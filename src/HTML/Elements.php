@@ -57,7 +57,7 @@ defined('HTML_NO_TIDY')             or define('HTML_NO_TIDY', 1);
 *                                                                              *
 *******************************************************************************/
 
-class Elements extends ArrayIterator
+class Elements extends \ArrayIterator
 {
 
     private $_parent_document = null;

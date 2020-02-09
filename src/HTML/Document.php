@@ -72,7 +72,7 @@ class Document extends \Asinius\HTML\Elements
      */
     public function __construct ($content = null, $options = 0)
     {
-        $this->_document = new DOMDocument();
+        $this->_document = new \DOMDocument();
         $this->_document->formatOutput        = true;
         $this->_document->preserveWhiteSpace  = false;
         $this->_document->strictErrorChecking = false;
