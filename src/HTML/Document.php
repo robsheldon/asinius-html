@@ -96,8 +96,8 @@ class Document extends \Asinius\HTML\Elements
             }
             else if ( is_resource($content) ) {
                 $html = '';
-                while ( ($chunk = fread($content, 8192)) !== false ) {
-                    $html .= $chunk;
+                while ( ! feof($content) ) {
+                    $html .= fread($content, 8192);
                 }
             }
             else if ( is_string($content) ) {
