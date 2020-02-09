@@ -107,7 +107,7 @@ class Document extends \Asinius\HTML\Elements
                 throw new \RuntimeException("Can't process this kind of input: " . gettype($content), \Asinius\EINVAL);
             }
             $this->_document->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-            parent::__construct($dom_document->documentElement, $this->_document, $options);
+            parent::__construct($this->_document->documentElement, $this->_document, $options);
         }
     }
 }
