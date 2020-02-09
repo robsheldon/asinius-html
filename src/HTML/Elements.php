@@ -276,11 +276,11 @@ class Elements extends \ArrayIterator
     public function offsetSet ($index, $element)
     {
         if ( ! is_a($element, 'DOMNode') ) {
-            throw new RuntimeException('Not a DOMNode', \Asinius\EINVAL);
+            throw new \RuntimeException('Not a DOMNode', \Asinius\EINVAL);
         }
         //  TODO. Need to figure out how to inject this element into the DOM
         //  (if it isn't already).
-        throw new RuntimeException('Not implemented yet', \Asinius\ENOSYS);
+        throw new \RuntimeException('Not implemented yet', \Asinius\ENOSYS);
     }
 
 
@@ -359,10 +359,10 @@ class Elements extends \ArrayIterator
         else if ( is_string($content) ) {
             if ( $flags & UNSAFE_HTML ) {
                 //  Treat as html.
-                $new_code = new DOMDocument();
+                $new_code = new \DOMDocument();
                 $new_code->loadHTML($content);
                 if ( is_null($new_code->documentElement) ) {
-                    throw new RuntimeException('Failed to load HTML content', EINVAL);
+                    throw new \RuntimeException('Failed to load HTML content', EINVAL);
                 }
                 $new_elements = $this->_domnodelist_to_array($new_code->documentElement->firstChild->childNodes);
                 $i = count($new_elements);
@@ -377,7 +377,7 @@ class Elements extends \ArrayIterator
             }
         }
         else {
-            throw new RuntimeException('Unhandled parameter type: ' . gettype($content), \Asinius\EINVAL);
+            throw new \RuntimeException('Unhandled parameter type: ' . gettype($content), \Asinius\EINVAL);
         }
         foreach ($new_elements as $new_element) {
             $this->_for_all_do(function($element, $new_element){
@@ -426,7 +426,7 @@ class Elements extends \ArrayIterator
      */
     public function getHTML ()
     {
-        $document = new DOMDocument();
+        $document = new \DOMDocument();
         $document->formatOutput = true;
         $document->preserveWhiteSpace = false;
         $document->strictErrorChecking = false;
@@ -436,7 +436,7 @@ class Elements extends \ArrayIterator
         }
         $html_out = $document->saveHTML();
         if ( ! ($this->_options & HTML_NO_TIDY) && class_exists('tidy') ) {
-            $tidy = new tidy;
+            $tidy = new \tidy;
             $tidy->parseString($html_out, array('indent' => true, 'output-xhtml' => false, 'wrap' => 0), 'utf8');
             $html_out = tidy_get_output($tidy);
         }
