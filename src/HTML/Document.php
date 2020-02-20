@@ -119,6 +119,7 @@ class Document extends \Asinius\HTML\Elements
      */
     public function __destruct ()
     {
+        parent::__destruct();
         $this->_document = null;
     }
 }
