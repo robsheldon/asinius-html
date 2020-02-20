@@ -72,6 +72,9 @@ class Document extends \Asinius\HTML\Elements
      */
     public function __construct ($content = null, $options = 0)
     {
+        //  https://stackoverflow.com/questions/8379829/domdocument-php-memory-leak
+        //  https://www.php.net/manual/en/function.libxml-clear-errors.php
+        libxml_clear_errors();
         $this->_document = new \DOMDocument();
         $this->_document->formatOutput        = true;
         $this->_document->preserveWhiteSpace  = false;
