@@ -54,7 +54,7 @@ libxml_use_internal_errors(true);
 class Document extends \Asinius\HTML\Elements
 {
 
-    private $_document = null;
+    protected $_document = null;
 
     /**
      * Create a new HTML Document. A blank document is created by default.
@@ -109,5 +109,16 @@ class Document extends \Asinius\HTML\Elements
             $this->_document->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             parent::__construct($this->_document->documentElement, $this->_document, $options);
         }
+    }
+
+
+    /**
+     * Cleanup.
+     *
+     * @return  void
+     */
+    public function __destruct ()
+    {
+        $this->_document = null;
     }
 }

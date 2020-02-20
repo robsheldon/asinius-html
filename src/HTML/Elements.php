@@ -60,8 +60,8 @@ defined('HTML_NO_TIDY')             or define('HTML_NO_TIDY', 1);
 class Elements extends \ArrayIterator
 {
 
-    private $_parent_document = null;
-    private $_options = 0;
+    protected $_parent_document = null;
+    protected $_options = 0;
 
 
     /**
@@ -73,7 +73,7 @@ class Elements extends \ArrayIterator
      *
      * @return  array
      */
-    private function _domnodelist_to_array ($node_list)
+    protected function _domnodelist_to_array ($node_list)
     {
         $nodes = [];
         foreach ($node_list as $node) {
@@ -90,7 +90,7 @@ class Elements extends \ArrayIterator
      *
      * @return  \Asinius\HTML\Elements
      */
-    private function _for_all_do ()
+    protected function _for_all_do ()
     {
         $arguments = func_get_args();
         $function = $arguments[0];
@@ -111,7 +111,7 @@ class Elements extends \ArrayIterator
      *
      * @return  mixed
      */
-    private function _for_all_get ()
+    protected function _for_all_get ()
     {
         $n = parent::count();
         if ( $n == 0 ) {
@@ -141,7 +141,7 @@ class Elements extends \ArrayIterator
      *
      * @return  string
      */
-    private function _substring ($string, $begin, $end = -1)
+    protected function _substring ($string, $begin, $end = -1)
     {
         if ( $end == -1 ) {
             $end = strlen($string);
@@ -160,7 +160,7 @@ class Elements extends \ArrayIterator
      *
      * @return  mixed
      */
-    private function _get_element_attribute ($element, $attribute_name)
+    protected function _get_element_attribute ($element, $attribute_name)
     {
         if ( ! is_null($attribute = $element->attributes->getNamedItem($attribute_name)) ) {
             return $attribute->value;
@@ -179,7 +179,7 @@ class Elements extends \ArrayIterator
      *
      * @return  boolean
      */
-    private function _element_has_class ($element, $search)
+    protected function _element_has_class ($element, $search)
     {
         //  Match elements with multiple classes.
         if ( is_null($classes = $element->attributes->getNamedItem('class')) ) {
