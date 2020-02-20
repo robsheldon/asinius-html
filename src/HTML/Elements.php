@@ -224,6 +224,18 @@ class Elements extends \ArrayIterator
 
 
     /**
+     * Clean up.
+     *
+     * @return  void
+     */
+    public function __destruct ()
+    {
+        //  Prevent a possible circular reference.
+        $this->_parent_document = null;
+    }
+
+
+    /**
      * Return the current element in the collection.
      *
      * @return  \Asinius\HTML\Elements
